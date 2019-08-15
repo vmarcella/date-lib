@@ -4,8 +4,14 @@
   "description": "An awesome javascript date library",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "eslint": "eslint --init"
   },
   "author": "C3NZ",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  }
 }
