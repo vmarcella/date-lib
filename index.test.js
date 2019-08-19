@@ -34,3 +34,14 @@ test('The date library returns the correct hours', () => {
   date = new Time(2067, 10, 30, 26);
   expect(date.hours()).toBe(2);
 });
+
+test('The date library returns the correct hours', () => {
+  let date = new Time('09/19/1997');
+  expect(date.minutes()).toBe(0);
+  date = new Time(2020, 12, 12, 16, 61);
+  expect(date.minutes()).toBe(1);
+  date = new Time(2067, 10, 30, 26, 45);
+  expect(date.minutes()).toBe(45);
+  date = new Time(2067, 10, 30, 22, 65);
+  expect(date.minutes()).toBe(5);
+});
