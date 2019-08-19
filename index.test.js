@@ -60,4 +60,5 @@ test('The date library returns the correct seconds', () => {
 test('The date library formats the mask properly', () => {
   const date = new Time('09/19/1997');
   expect(date.format('')).toBe('1997 September 19');
+  expect(date.format('H:I:S')).toBe('00:00:00');
 });

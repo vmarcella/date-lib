@@ -142,18 +142,18 @@ module.exports = class Time {
     }
 
     const formatter = {
-      Y: this.year,
-      y: this.shortYear,
-      M: this.month,
-      m: this.shortMonth,
-      D: this.longDay,
-      d: this.day,
-      H: this.longHours,
-      h: this.hours,
-      I: this.longMinutes,
-      i: this.minutes,
-      S: this.longSeconds,
-      s: this.seconds,
+      Y: this.year.bind(this),
+      y: this.shortYear.bind(this),
+      M: this.month.bind(this),
+      m: this.shortMonth.bind(this),
+      D: this.longDay.bind(this),
+      d: this.day.bind(this),
+      H: this.longHours.bind(this),
+      h: this.hours.bind(this),
+      I: this.longMinutes.bind(this),
+      i: this.minutes.bind(this),
+      S: this.longSeconds.bind(this),
+      s: this.seconds.bind(this),
     };
 
     const outputStr = [];
@@ -168,6 +168,6 @@ module.exports = class Time {
       }
     }
 
-    return String(outputStr);
+    return outputStr.join('');
   }
 };
