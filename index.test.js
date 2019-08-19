@@ -35,7 +35,7 @@ test('The date library returns the correct hours', () => {
   expect(date.hours()).toBe(2);
 });
 
-test('The date library returns the correct hours', () => {
+test('The date library returns the correct minutes', () => {
   let date = new Time('09/19/1997');
   expect(date.minutes()).toBe(0);
   date = new Time(2020, 12, 12, 16, 61);
@@ -46,7 +46,7 @@ test('The date library returns the correct hours', () => {
   expect(date.minutes()).toBe(5);
 });
 
-test('The date library returns the correct hours', () => {
+test('The date library returns the correct seconds', () => {
   let date = new Time('09/19/1997');
   expect(date.seconds()).toBe(0);
   date = new Time(2020, 12, 12, 16, 61, 20);
@@ -55,4 +55,9 @@ test('The date library returns the correct hours', () => {
   expect(date.seconds()).toBe(20);
   date = new Time(2067, 10, 30, 22, 60);
   expect(date.seconds()).toBe(0);
+});
+
+test('The date library formats the mask properly', () => {
+  const date = new Time('09/19/1997');
+  expect(date.format('')).toBe('1997 September 19');
 });

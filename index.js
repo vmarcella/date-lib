@@ -28,16 +28,28 @@ module.exports = class Time {
     return this.date.getFullYear();
   }
 
+  shortYear() {
+    const yearStr = this.year().toString();
+    const slicedYear = yearStr.slice(2, yearStr.length);
+
+    return Number(slicedYear);
+  }
+
   /**
    * @function
    * @desc Get the month from the current date
-   * @return {Number} Get the full month
+   * @return {String} Get the full month
    * @example
    * Time('10/10/2019').getMonth() -> October
    */
   month() {
     const month = this.monthMap[this.date.getMonth()];
     return month;
+  }
+
+  shortMonth() {
+    const month = this.month();
+    return month.slice(0, 3);
   }
 
   /**
@@ -51,6 +63,16 @@ module.exports = class Time {
     return this.date.getUTCDate();
   }
 
+  longDay() {
+    const day = this.day();
+
+    if (day < 10) {
+      return `0${day}`;
+    }
+
+    return String(day);
+  }
+
   /**
    * @function
    * @desc Get the hours of the current date
@@ -60,6 +82,16 @@ module.exports = class Time {
    */
   hours() {
     return this.date.getHours();
+  }
+
+  longHours() {
+    const hours = this.hours();
+
+    if (hours < 10) {
+      return `0${hours}`;
+    }
+
+    return String(hours);
   }
 
   /**
@@ -73,6 +105,16 @@ module.exports = class Time {
     return this.date.getMinutes();
   }
 
+  longMinutes() {
+    const minutes = this.minutes();
+
+    if (minutes < 10) {
+      return `0${minutes.toString()}`;
+    }
+
+    return String(minutes);
+  }
+
   /**
    * @function
    * @desc Get the full year from the date
@@ -82,5 +124,50 @@ module.exports = class Time {
    */
   seconds() {
     return this.date.getSeconds();
+  }
+
+  longSeconds() {
+    const seconds = this.seconds();
+
+    if (seconds < 10) {
+      return `0${seconds}`;
+    }
+
+    return String(seconds);
+  }
+
+  format(mask = '') {
+    if (mask === '') {
+      return `${this.year()} ${this.month()} ${this.longDay()}`;
+    }
+
+    const formatter = {
+      Y: this.year,
+      y: this.shortYear,
+      M: this.month,
+      m: this.shortMonth,
+      D: this.longDay,
+      d: this.day,
+      H: this.longHours,
+      h: this.hours,
+      I: this.longMinutes,
+      i: this.minutes,
+      S: this.longSeconds,
+      s: this.seconds,
+    };
+
+    const outputStr = [];
+
+    for (let i = 0; i < mask.length; i += 1) {
+      const currChar = mask[i];
+      if (formatter[currChar]) {
+        const replacement = formatter[currChar]();
+        outputStr.push(replacement);
+      } else {
+        outputStr.push(currChar);
+      }
+    }
+
+    return String(outputStr);
   }
 };
