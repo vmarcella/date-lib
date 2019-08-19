@@ -66,4 +66,6 @@ test('The date library formats the mask properly', () => {
   date = new Time(2025, 9, 31, 6, 30, 25);
   expect(date.format()).toBe('2025 October 31');
   expect(date.format('Y-m-D h:I:S')).toBe('2025-Oct-31 6:30:25');
+  expect(date.format('h-i-s')).toBe('6-30-25');
+  expect(date.format('---')).toBe('---');
 });
