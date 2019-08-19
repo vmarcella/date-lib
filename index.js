@@ -1,4 +1,4 @@
-export default class Time {
+module.exports = class Time {
   constructor(...args) {
     this.date = new Date(...args);
     this.monthMap = {
@@ -22,7 +22,7 @@ export default class Time {
    * @desc Get the full year from the date
    * @return {Number} The full year
    * @example
-   * Time().getFullYear() -> 2019
+   * Time('10/10/2019').getFullYear() -> 2019
    */
   year() {
     return this.date.getFullYear();
@@ -33,7 +33,7 @@ export default class Time {
    * @desc Get the month from the current date
    * @return {Number} Get the full month
    * @example
-   * Time('10/10/2019').getFullYear() -> October
+   * Time('10/10/2019').getMonth() -> October
    */
   month() {
     const month = this.monthMap[this.date.getMonth()];
@@ -43,9 +43,9 @@ export default class Time {
   /**
    * @function
    * @desc Get the day of the month
-   * @return {Number} The full year
+   * @return {Number} The day of the month in the date object
    * @example
-   * Time().getFullYear() -> 2019
+   * Time('10/10/2019').getFullYear() -> 10
    */
   day() {
     return this.date.getUTCDate();
@@ -53,8 +53,8 @@ export default class Time {
 
   /**
    * @function
-   * @desc Get the full year from the date
-   * @return {Number} The full year
+   * @desc Get the hours of the current date
+   * @return {Number} The hour of the current date
    * @example
    * Time().getFullYear() -> 2019
    */
@@ -64,8 +64,8 @@ export default class Time {
 
   /**
    * @function
-   * @desc Get the full year from the date
-   * @return {Number} The full year
+   * @desc Get the minutes of the current date.
+   * @return {Number} The minutes of the current date
    * @example
    * Time().getFullYear() -> 2019
    */
@@ -83,4 +83,4 @@ export default class Time {
   seconds() {
     return this.date.getSeconds();
   }
-}
+};
