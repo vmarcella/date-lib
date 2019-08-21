@@ -7,7 +7,11 @@
     "test": "jest",
     "eslint": "eslint --init",
     "doc": "documentation readme --section=API index.js",
-    "coverage": "npm test && codecov"
+    "coverage": "jest --coverage && codecov"
+  },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
   },
   "author": "C3NZ",
   "license": "MIT",
