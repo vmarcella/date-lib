@@ -1,3 +1,7 @@
+/**
+ * @class
+ * @desc A Date object wrapper that extends the date functionality
+ */
 class Time {
   constructor(...args) {
     this.date = new Date(...args);
@@ -28,6 +32,13 @@ class Time {
     return this.date.getFullYear();
   }
 
+  /**
+   * @function
+   * @desc Get the short year from the date
+   * @return {Number} The last two digits of the year
+   * @example
+   * Time('10/10/2019').getFullYear() -> 19
+   */
   shortYear() {
     const yearStr = this.year().toString();
     const slicedYear = yearStr.slice(2, yearStr.length);
@@ -47,6 +58,13 @@ class Time {
     return month;
   }
 
+  /**
+   * @function
+   * @desc Get the month from the current date
+   * @return {String} Get the short month
+   * @example
+   * Time('10/10/2019').getMonth() -> Oct
+   */
   shortMonth() {
     const month = this.month();
     return month.slice(0, 3);
@@ -63,6 +81,13 @@ class Time {
     return this.date.getUTCDate();
   }
 
+  /**
+   * @function
+   * @desc Get the day of the month
+   * @return {Number} The day of the month in the date object
+   * @example
+   * Time('10/1/2019').hours() -> 01
+   */
   longDay() {
     const day = this.day();
 
@@ -78,12 +103,19 @@ class Time {
    * @desc Get the hours of the current date
    * @return {Number} The hour of the current date
    * @example
-   * Time().getFullYear() -> 2019
+   * Time().hours() -> 0
    */
   hours() {
     return this.date.getHours();
   }
 
+  /**
+   * @function
+   * @desc Get the long hours of the current date
+   * @return {Number} The hour of the current date
+   * @example
+   * Time().longHours() -> 00
+   */
   longHours() {
     const hours = this.hours();
 
@@ -99,12 +131,19 @@ class Time {
    * @desc Get the minutes of the current date.
    * @return {Number} The minutes of the current date
    * @example
-   * Time().getFullYear() -> 2019
+   * Time().minutes() -> 0
    */
   minutes() {
     return this.date.getMinutes();
   }
 
+  /**
+   * @function
+   * @desc Get the long minutes of the current date.
+   * @return {Number} The minutes of the current date
+   * @example
+   * Time().longMinutes() -> 00
+   */
   longMinutes() {
     const minutes = this.minutes();
 
@@ -198,7 +237,9 @@ class Time {
     for (let i = 0; i < timeValues.length; i += 1) {
       prevDiff = currDiff;
       currDiff = Math.abs(difference / timeValues[i]);
-      console.log(currDiff);
+
+      // If we can't break down the date anymore, we've found out
+      // how far away it is from our current date
       if (currDiff < 1) {
         prevDiff = Math.round(prevDiff);
         const absDiff = Math.abs(prevDiff);
@@ -211,15 +252,16 @@ class Time {
       }
     }
 
+    // We've exhausted all options, meaning the date is year(s)
+    // away
     currDiff = Math.round(currDiff);
+
+    const unitsAway = currDiff === 1 ? 'year' : '$years';
     if (difference < 0) {
-      return `${currDiff} years from now`;
+      return `${currDiff} ${unitsAway} from now`;
     }
-    return `${currDiff} years ago`;
+    return `${currDiff} ${unitsAway} years ago`;
   }
 }
-
-const d = new Time('8/30/2020');
-console.log(d.when());
 
 module.exports = Time;
