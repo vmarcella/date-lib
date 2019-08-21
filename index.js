@@ -1,4 +1,4 @@
-module.exports = class Time {
+class Time {
   constructor(...args) {
     this.date = new Date(...args);
     this.monthMap = {
@@ -170,4 +170,56 @@ module.exports = class Time {
 
     return outputStr.join('');
   }
-};
+
+  when() {
+    // Setup variables
+    const now = new Date();
+    const difference = now - this.date;
+    const timeValues = [
+      1000,
+      1000 * 60,
+      1000 * 60 * 60,
+      1000 * 60 * 60 * 24,
+      1000 * 60 * 60 * 24 * 30,
+      1000 * 60 * 60 * 24 * 365,
+    ];
+    const timeUnits = [
+      'millisecond',
+      'second',
+      'minute',
+      'day',
+      'month',
+      'year',
+    ];
+
+    let currDiff;
+    let prevDiff;
+    // Iterate through the different units of times
+    for (let i = 0; i < timeValues.length; i += 1) {
+      prevDiff = currDiff;
+      currDiff = Math.abs(difference / timeValues[i]);
+      console.log(currDiff);
+      if (currDiff < 1) {
+        prevDiff = Math.round(prevDiff);
+        const absDiff = Math.abs(prevDiff);
+        const unitsAway = absDiff === 1 ? timeUnits[i - 1] : `${timeUnits[i - 1]}s`;
+        if (difference < 0) {
+          return `${prevDiff} ${unitsAway} from now`;
+        }
+
+        return `${prevDiff} ${unitsAway} ago`;
+      }
+    }
+
+    currDiff = Math.round(currDiff);
+    if (difference < 0) {
+      return `${currDiff} years from now`;
+    }
+    return `${currDiff} years ago`;
+  }
+}
+
+const d = new Time('8/30/2020');
+console.log(d.when());
+
+module.exports = Time;
