@@ -1,5 +1,9 @@
 # Date-lib
 
+![Travis (.com)](https://img.shields.io/travis/com/C3NZ/date-lib?style=plastic)
+![Codecov](https://img.shields.io/codecov/c/gh/C3NZ/date-lib?style=plastic)
+![GitHub issues](https://img.shields.io/github/issues/C3NZ/date-lib?style=plastic)
+
 ## Description
 
 A Date library wrapper that extends the functionality of the built in javascript `Date` object. It is
@@ -35,6 +39,13 @@ very lightweight and only relies on built in javascript functionality to wrap th
         -   [Examples](#examples-9)
     -   [seconds](#seconds)
         -   [Examples](#examples-10)
+    -   [longSeconds](#longseconds)
+        -   [Examples](#examples-11)
+    -   [format](#format)
+        -   [Parameters](#parameters-1)
+        -   [Examples](#examples-12)
+    -   [when](#when)
+        -   [Examples](#examples-13)
 
 ### Time
 
@@ -175,3 +186,43 @@ Time().getFullYear() -> 2019
 ```
 
 Returns **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** The full year
+
+#### longSeconds
+
+Get the day of the month
+
+##### Examples
+
+```javascript
+Time('10/1/2019').hours() -> 01
+```
+
+Returns **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** The day of the month in the date object
+
+#### format
+
+format a string given a mask to format properties of the time object.
+
+##### Parameters
+
+-   `mask`   (optional, default `''`)
+
+##### Examples
+
+```javascript
+Time('10/1/2019').format('Y-m-D') -> '2019-October-1'
+```
+
+Returns **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The formatted string
+
+#### when
+
+return when the date stored in the time object had occured relative to now.
+
+##### Examples
+
+```javascript
+Time('10/1/2019').when() -> '2 months ago (if todays month is august)'
+```
+
+Returns **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** the string containing when the date occurred relative to now.

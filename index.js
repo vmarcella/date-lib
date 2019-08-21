@@ -165,6 +165,13 @@ class Time {
     return this.date.getSeconds();
   }
 
+  /**
+   * @function
+   * @desc Get the day of the month
+   * @return {Number} The day of the month in the date object
+   * @example
+   * Time('10/1/2019').hours() -> 01
+   */
   longSeconds() {
     const seconds = this.seconds();
 
@@ -175,6 +182,13 @@ class Time {
     return String(seconds);
   }
 
+  /**
+   * @function
+   * @desc format a string given a mask to format properties of the time object.
+   * @return {String} The formatted string
+   * @example
+   * Time('10/1/2019').format('Y-m-D') -> '2019-October-1'
+   */
   format(mask = '') {
     if (mask === '') {
       return `${this.year()} ${this.month()} ${this.longDay()}`;
@@ -210,6 +224,13 @@ class Time {
     return outputStr.join('');
   }
 
+  /**
+   * @function
+   * @desc return when the date stored in the time object had occured relative to now.
+   * @return {String} the string containing when the date occurred relative to now.
+   * @example
+   * Time('10/1/2019').when() -> '2 months ago (if todays month is august)'
+   */
   when() {
     // Setup variables
     const now = new Date();
